@@ -1,5 +1,5 @@
-{%load static%}
 <!DOCTYPE html>
+{%load static%}
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
@@ -9,31 +9,24 @@
     <title>Заголовок главной страницы</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="{%static 'assets/css/swiper-bundle.min.css' %}">
-	<link rel="stylesheet" href="{%static 'assets/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css'%}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
     <div class="wrapper">
         <div class="content">
-            <h1>Заголовок первого уровня</h1>
+            {%for item in news%}
+            <h1>{{item.title}}</h1>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{%static 'assets/images/main_1.jpg'%}"
-                             alt="Первая картинка"></div>
-                    <div class="swiper-slide">
-                        <img src="{% static 'assets/images/main_2.jpg' %}"
-                             alt="Вторая картинка"></div>
-                    <div class="swiper-slide">
-                        <img src="{% static 'assets/images/main_3.jpg' %}"
-                             alt="Третья картинка"></div>
-                    <div class="swiper-slide">
-                        <img src="{% static  'assets/images/main_4.jpg' %}"
-                             alt="Четвертая картинка"></div>
+                        <img src="{{item.photo.url}}" alt="Первая картинка"></div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
+            {%endfor%}
             <div class="intro-text">
                 <p>По мнению учёных, Земля образовалась 4,54 млрд лет назад из межзвёздного газопылевого облака, наряду с Солнцем и другими планетами. Луна сформировалась примерно на 20 млн лет позже в результате столкновения массивного тела с Землёй. Расплавленный наружный слой Земли со временем охлаждался, в результате чего сформировалась твёрдая оболочка — кора.</p>
                 <p>Выделение газов и вулканическая активность привели к возникновению первичной атмосферы. Конденсация водяного пара (большинство которого образовалось изо льда комет) привела к возникновению океанов и других водных ресурсов, после чего высокоэнергетическая химия привела к возникновению самовоспроизводящейся молекулы около 4 млрд лет назад.</p>
@@ -60,7 +53,7 @@
         </div>
     </div>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=28ba27e6-8179-45dd-8a90-a542e1883e67" type="text/javascript"></script>
-	<script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
-	<script src="{% static 'assets/js/main.js' %}"></script>
+	<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
