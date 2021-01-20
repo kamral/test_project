@@ -2,13 +2,15 @@
 {%block content%}
     <div class="wrapper">
         <div class="content">
-            <h1>{{title}}</h1>
+            <h1>{{title}} <p> <a href=""> Edit </a>  </p></h1>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     {%for item in posts%}
                     <div class="swiper-slide">
                         <img src="{{item.photo.url}}"
-                             alt="Первая картинка"></div>
+                             alt="Первая картинка">
+                    <p> <a href=""> Dowload </a> |
+    <a href=""> Delete </a> </p></div>
                     {%endfor%}
                 </div>
                 <div class="swiper-button-next"></div>

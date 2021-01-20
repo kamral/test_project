@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
+
 
 class post(models.Model):
     title=models.CharField(max_length=255, verbose_name='Заголовок')
@@ -11,6 +13,9 @@ class post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('post_edit', kwargs={'pk':self.pk})
+
     class Meta:
         verbose_name='Пост'
         verbose_name_plural='Посты'
@@ -19,6 +24,7 @@ class post(models.Model):
 class spisok(models.Model):
     title=models.CharField(max_length=255, verbose_name='Заголовок списка')
     text=models.TextField(verbose_name='Текст спика')
+
 
     def __str__(self):
         return self.title
@@ -32,7 +38,7 @@ class product(models.Model):
     title_number=models.CharField(max_length=255, verbose_name='Номер продукта')
     product_name=models.CharField(max_length=255, verbose_name='Наименование продукта')
     product_photo=models.ImageField(upload_to='photo/product',verbose_name='Фото продукта')
-    spisok=models.ForeignKey(spisok, on_delete=models.CASCADE, verbose_name='Перечень списка')
+    spisok=models.ManyToManyField(spisok,  verbose_name='Перечень списка')
 
     def __str__(self):
         return self.title
