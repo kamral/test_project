@@ -3,6 +3,8 @@ from .models import post
 # Create your views here.
 
 def index(request):
-    news=post.objects.all()
-    title=post.objects.get(title__contains='Название поста')
-    return render(request,'index.html', {'news':news,'title':title})
+    posts=post.objects.all()
+    title=post.objects.get(pk=1)
+
+    return render(request,'index.html', {
+        'posts':posts,'title':title})

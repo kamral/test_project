@@ -16,3 +16,30 @@ class post(models.Model):
         verbose_name_plural='Посты'
 
 
+class spisok(models.Model):
+    title=models.CharField(max_length=255, verbose_name='Заголовок списка')
+    text=models.TextField(verbose_name='Текст спика')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Список'
+        verbose_name_plural = 'Списки'
+
+
+class product(models.Model):
+    title_number=models.CharField(max_length=255, verbose_name='Номер продукта')
+    product_name=models.CharField(max_length=255, verbose_name='Наименование продукта')
+    product_photo=models.ImageField(upload_to='photo/product',verbose_name='Фото продукта')
+    spisok=models.ForeignKey(spisok, on_delete=models.CASCADE, verbose_name='Перечень списка')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+
+
+
