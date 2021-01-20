@@ -4,4 +4,5 @@ from .models import post
 
 def index(request):
     news=post.objects.all()
-    return render(request,'index.html', {'news':news})
+    title=post.objects.get(title__contains='Название поста')
+    return render(request,'index.html', {'news':news,'title':title})
