@@ -1,27 +1,36 @@
-from django.shortcuts import render
-from .models import post
+from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
+
+from .models import Post
 # Create your views here.
 from .forms import PostForm
 
 
 
 def index(request):
-    posts=post.objects.all()
-    title=post.objects.get(pk=1)
+    posts=Post.objects.all()
+    title=Post.objects.get(pk=1)
 
 
-    return render(request,'index.html', {
-        'posts':posts,'title':title})
+    return render(request,'index.html',{'posts':posts,'title':title})
 
 
 
-def posts_edit(request):
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'post_detail.html', {'post': post})
+
+
+def post_title_edit(request,pk):
+    post=get_object_or_404(Post,pk=pk)
     if request.method == 'POST':
-        post_edit = PostForm(request.POST)
-        if post_edit.is_valid():
-            post_edit.save()
+        form=PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post=form.save()
+            post.published_date=timezone.now()
+            post.save()
+            return redirect('/')
 
     else:
-        post_edit = PostForm()
-
-    return render(request,'post_edit.html',{'form':post_edit})
+        form=PostForm(instance=post)
+    return render(request,'post_edit.html',{'form':form})

@@ -1,44 +1,47 @@
 {%extends 'base.html'%}
+{%load static%}
 {%block content%}
-    <div class="wrapper">
-        <div class="content">
-            <h1>{{title}} <p> <a href=""> Edit </a>  </p></h1>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    {%for item in posts%}
-                    <div class="swiper-slide">
-                        <img src="{{item.photo.url}}"
-                             alt="Первая картинка">
+<div class="wrapper">
+    <div class="content">
+        <h1>{{title}} <p>
+            <a href="{% url 'post_edit' title.pk%}">
+                Edit </a>  </p></h1>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {%for item in posts%}
+                <div class="swiper-slide">
+                    <img src="{{item.photo.url}}"
+                         alt="Первая картинка">
                     <p> <a href=""> Dowload </a> |
-    <a href=""> Delete </a> </p></div>
-                    {%endfor%}
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-
+                        <a href=""> Delete </a> </p></div>
+                {%endfor%}
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
-
-            <div class="intro-text">
-                <p>{{text}} </p>
-            </div>
-            <div class="products-list">
-                <h2>Продукты</h2>
-                <ul>
-                    <li><a href="product.html">Продукт 1</a></li>
-                    <li><a href="product.html">Продукт 2</a></li>
-                    <li><a href="product.html">Продукт 3</a></li>
-                    <li><a href="product.html">Продукт 4</a></li>
-                    <li><a href="product.html">Продукт 5</a></li>
-                </ul>
-            </div>
-            <div id="map" data-latitude="55.76" data-longitude="37.64"></div>
-            <h2>Отправить сообщение</h2>
-            <form id="form">
-                <input type="text" placeholder="Ваше имя" class="text-box" id="name" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
-                <input type="text" placeholder="Электронная почта" class="text-box" id="email" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
-                <input type="submit" value="Отправить" class="button" onclick="event.preventDefault();onSubmitEvent()">
-            </form>
         </div>
+
+
+        <div class="intro-text">
+            <p>{{text}} </p>
+        </div>
+        <div class="products-list">
+            <h2>Продукты</h2>
+            <ul>
+                <li><a href="product.html">Продукт 1</a></li>
+                <li><a href="product.html">Продукт 2</a></li>
+                <li><a href="product.html">Продукт 3</a></li>
+                <li><a href="product.html">Продукт 4</a></li>
+                <li><a href="product.html">Продукт 5</a></li>
+            </ul>
+        </div>
+        <div id="map" data-latitude="55.76" data-longitude="37.64"></div>
+        <h2>Отправить сообщение</h2>
+        <form id="form">
+            <input type="text" placeholder="Ваше имя" class="text-box" id="name" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
+            <input type="text" placeholder="Электронная почта" class="text-box" id="email" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
+            <input type="submit" value="Отправить" class="button" onclick="event.preventDefault();onSubmitEvent()">
+        </form>
     </div>
+</div>
 {%endblock content%}
