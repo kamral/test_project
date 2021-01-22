@@ -33,7 +33,7 @@
             <h2>{{object_list.name_productions}}</h2>
             <ul>
                 {%for item in product%}
-                <li><a href="product.html">{{item}}</a></li>
+                <li><a href="{% url 'product_detail' item.pk%}">{{item}}</a></li>
                 {%endfor%}
             </ul>
         </div>

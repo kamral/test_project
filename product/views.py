@@ -113,4 +113,10 @@ class PhotoDelete(DeleteView):
 #
 
 
+# def post_detail(request, pk):
+#     post = get_object_or_404(Post, pk=pk)
+#     return render(request, 'post_detail.html', {'post': post})
 
+def produtc_detail(request,pk):
+    products=get_object_or_404(product,pk=pk)
+    return render(request,'product_detail.html', {'products':products})
