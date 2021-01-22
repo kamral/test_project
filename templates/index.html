@@ -23,21 +23,18 @@
 
         </div>
         <div>
+
          <p> <a href="{%url 'add_photo'%}"> Dowload </a> |
-                        <a href="#"> Delete </a> </p>
+                        <a href="{% url 'animation_delete' object_list.pk%}"> Delete </a> </p>
             </div>
 
-        <div class="intro-text">
-            <p>{{text}} </p>
-        </div>
+
         <div class="products-list">
-            <h2>Продукты</h2>
+            <h2>{{object_list.name_productions}}</h2>
             <ul>
-                <li><a href="product.html">Продукт 1</a></li>
-                <li><a href="product.html">Продукт 2</a></li>
-                <li><a href="product.html">Продукт 3</a></li>
-                <li><a href="product.html">Продукт 4</a></li>
-                <li><a href="product.html">Продукт 5</a></li>
+                {%for item in product%}
+                <li><a href="product.html">{{item}}</a></li>
+                {%endfor%}
             </ul>
         </div>
         <div id="map" data-latitude="55.76" data-longitude="37.64"></div>

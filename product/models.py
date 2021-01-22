@@ -28,7 +28,8 @@ class Post(models.Model):
 class Animation(models.Model):
     photo=models.ImageField(upload_to='photo/', verbose_name='Фото')
 
-
+    def get_absolute_url(self):
+        return reverse('delete_photo', kwargs={'pk':self.pk})
 
 
 class spisok(models.Model):
@@ -51,7 +52,7 @@ class product(models.Model):
     spisok=models.ManyToManyField(spisok,  verbose_name='Перечень списка')
 
     def __str__(self):
-        return self.title
+        return self.title_number
 
     class Meta:
         verbose_name = 'Продукт'
