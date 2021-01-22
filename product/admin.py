@@ -4,10 +4,38 @@ from .models import Post, \
     product, Animation
 # Register your models here.
 
-admin.site.register(spisok)
-admin.site.register(product)
-admin.site.register(Post)
-admin.site.register(Animation)
+
+
+
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'text', 'name_productions','created_date',
+                    'published_date',)
+    list_filter = ('created_date','title','name_productions')
+    search_fields = ('title',)
+
+class SpisokAdmin(admin.ModelAdmin):
+    pass
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('title_number','product_name','product_photo')
+    search_fields = ('title_number',)
+    list_filter = ('title_number',)
+
+
+
+class AnimationAdmin(admin.ModelAdmin):
+    list_display = ('photo',)
+    list_filter = ('photo',)
+
+
+
+
+
+admin.site.register(spisok,SpisokAdmin)
+admin.site.register(product,ProductAdmin)
+admin.site.register(Post,PostAdmin)
+admin.site.register(Animation,AnimationAdmin)
 
 
 

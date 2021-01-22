@@ -27,7 +27,9 @@
          <p> <a href="{%url 'add_photo'%}"> Dowload </a> |
                         <a href="{% url 'animation_delete' object_list.pk%}"> Delete </a> </p>
             </div>
-
+         <div class="intro-text">
+                <p>{{object_list.text}}</p>
+            </div>
 
         <div class="products-list">
             <h2>{{object_list.name_productions}}</h2>
