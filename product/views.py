@@ -113,10 +113,18 @@ class PhotoDelete(DeleteView):
 #
 
 
-# def post_detail(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#     return render(request, 'post_detail.html', {'post': post})
 
-def produtc_detail(request,pk):
+
+class ProductDetail(DetailView):
+    model = product
+    template_name = 'product_detail.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        contex = super().get_context_data(**kwargs)
+        contex['products'] = product.objects.all()
+
+        return contex
+
+def product_detail(request,pk):
     products=get_object_or_404(product,pk=pk)
     return render(request,'product_detail.html', {'products':products})

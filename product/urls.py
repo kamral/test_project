@@ -1,7 +1,11 @@
 from django.urls import path
 
-from .views import produtc_detail
-from .views import Index, PostDetail,PostTitleEdit,PhotoAdd, PhotoDelete
+# from .views import produtc_detail
+from .views import Index, \
+    PostDetail,\
+    PostTitleEdit,\
+    PhotoAdd,\
+    PhotoDelete, ProductDetail
 
 urlpatterns = [
     path('',Index.as_view(), name='home'),
@@ -15,5 +19,7 @@ urlpatterns = [
     # path('post/<int:pk>/delete/', delete_photo, name='animation_delete')
     path('animation_delete/<int:pk>/delete/', PhotoDelete.as_view(),
          name='animation_delete'),
-    path('product/<int:pk>/', produtc_detail, name='product_detail')
+    # path('product/<int:pk>/', produtc_detail, name='product_detail')
+    path('product/<int:pk>/', ProductDetail.as_view(), name='product_detail')
+
 ]

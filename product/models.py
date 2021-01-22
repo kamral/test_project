@@ -59,4 +59,6 @@ class product(models.Model):
         verbose_name_plural = 'Продукты'
 
 
-
+class MapCoordinates(models.Model):
+    first_coordinate=models.CharField(max_length=255, verbose_name='Первый координат карты')
+    second_coordinate=models.CharField(max_length=255, verbose_name='Первый координат карты')
