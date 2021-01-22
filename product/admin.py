@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Post, \
     spisok,\
-    product, Animation
+    product, Animation,MapCoordinates
 # Register your models here.
 
 
@@ -36,6 +36,7 @@ admin.site.register(spisok,SpisokAdmin)
 admin.site.register(product,ProductAdmin)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Animation,AnimationAdmin)
+admin.site.register(MapCoordinates)
 
 
 

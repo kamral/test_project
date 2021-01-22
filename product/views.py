@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .models import Post,Animation,product
+from .models import Post,Animation,product,MapCoordinates
 # Create your views here.
 from .forms import PostForm,PostPhotoForm
 from django.http import HttpResponseRedirect
@@ -19,7 +19,8 @@ class Index(ListView):
         contex=super().get_context_data(**kwargs)
         contex['title']=Post.objects.get(pk=1)
         contex['animation']=Animation.objects.all()
-        contex['product']=product.objects.all()
+        contex['product']=product.objects.all().order_by('created_date')
+        contex['map']=MapCoordinates.objects.all()
         return contex
 
 # def index(request):

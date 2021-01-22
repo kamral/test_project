@@ -39,7 +39,7 @@
                 {%endfor%}
             </ul>
         </div>
-        <div id="map" data-latitude="55.76" data-longitude="37.64"></div>
+        <div id="map" data-latitude="{{map.first}}" data-longitude="{{map.last}}"></div>
         <h2>Отправить сообщение</h2>
         <form id="form">
             <input type="text" placeholder="Ваше имя" class="text-box" id="name" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
