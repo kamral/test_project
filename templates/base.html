@@ -11,6 +11,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{%static 'css/swiper-bundle.min.css' %}">
 	<link rel="stylesheet" href="{%static 'css/style.css' %}">
+	 <script type="text/javascript">
+	 function buttonClick ()
+      {
+        var div = document.getElementById ("myDiv");
+        var button = document.getElementById ("myButton");
+        var content_div = document.getElementById ("ListContent");
+        var textarea = document.getElementById ("myTextarea");
+
+        if (div.contentEditable == "true")
+        {
+          div.contentEditable = "false";
+          content_div.style.display = "inline";
+          textarea.innerHTML = div.innerHTML;
+          button.value = "Редактировать";
+        }
+
+        else
+        {
+          div.contentEditable = "true";
+          content_div.style.display = "none";
+          button.value = "Сохранить";
+        }
+
+      }
+    </script>
+
 </head>
 <body>
    {%block content%}
@@ -18,5 +44,6 @@
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=28ba27e6-8179-45dd-8a90-a542e1883e67" type="text/javascript"></script>
 	<script src="{%static 'js/swiper-bundle.min.js'%}"></script>
 	<script src="{%static 'js/main.js'%}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </body>
 </html>

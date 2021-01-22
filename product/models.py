@@ -7,11 +7,10 @@ from django.utils import timezone
 
 
 class Post(models.Model):
-    title=models.CharField(max_length=255, verbose_name='Заголовок')
-    photo=models.ImageField(upload_to='photo', verbose_name='Слайдер')
-    text=models.TextField(verbose_name='Текст')
-    name_productions=models.CharField(max_length=255, verbose_name='Продукты')
-    created_date = models.DateTimeField(default=timezone.now)
+    title=models.CharField(blank=True,max_length=255, verbose_name='Заголовок')
+    text=models.TextField(blank=True,verbose_name='Текст')
+    name_productions=models.CharField(blank=True,max_length=255, verbose_name='Продукты')
+    created_date = models.DateTimeField(blank=True,default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
@@ -25,6 +24,11 @@ class Post(models.Model):
     class Meta:
         verbose_name='Пост'
         verbose_name_plural='Посты'
+
+class Animation(models.Model):
+    photo=models.ImageField(upload_to='photo/', verbose_name='Фото')
+
+
 
 
 class spisok(models.Model):

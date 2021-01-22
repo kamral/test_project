@@ -3,24 +3,29 @@
 {%block content%}
 <div class="wrapper">
     <div class="content">
-        <h1>{{title}} <p>
-            <a href="{% url 'post_edit' title.pk%}">
-                Edit </a>  </p></h1>
+
+        <h3 contenteditable="true">{{title}} </h3>
+        <input type="button" id="myButton" onclick="buttonClick();" value="Сохранить">
+        <br><br>
+         <p> <a href="{% url 'post_edit' title.pk%}">
+                Edit </a>  </p>
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                {%for item in posts%}
+                {%for item in animation%}
                 <div class="swiper-slide">
                     <img src="{{item.photo.url}}"
                          alt="Первая картинка">
-                    <p> <a href=""> Dowload </a> |
-                        <a href=""> Delete </a> </p></div>
+                   </div>
                 {%endfor%}
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
 
         </div>
-
+        <div>
+         <p> <a href="{%url 'add_photo'%}"> Dowload </a> |
+                        <a href="#"> Delete </a> </p>
+            </div>
 
         <div class="intro-text">
             <p>{{text}} </p>
