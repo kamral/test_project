@@ -7,7 +7,7 @@ from .forms import \
     PostForm,\
     AnimationForm,\
     ProductForm,\
-    ProductProductNameEditForm
+    ProductProductNameEditForm,ProductAddPhoto
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from django.views.generic import ListView,\
@@ -137,6 +137,8 @@ class ProductDetail(ListView):
         context=super().get_context_data(**kwargs)
         context['products']=product.objects.filter(pk=self.kwargs['pk'])
 
+
+
         return context
 
 
@@ -157,7 +159,7 @@ class ProductAdd(CreateView):
 #     if request.method=='POST':
 #         form=ProductForm(request.POST, request.FILES)
 #         if form.is_valid():
-#             form.save()
+#             product=form.save()
 #             return redirect('/')
 #
 #     else:
@@ -190,16 +192,37 @@ class ProductNameEdit(UpdateView):
 
 
 
-def product_name_edit(request,pk):
-    product_name_edit=get_object_or_404(product, pk=pk)
+# def product_name_edit(request,pk):
+#     product_name_edit=get_object_or_404(product, pk=pk)
+#     if request.method == 'POST':
+#         form=ProductProductNameEditForm(request.POST,instance=product_name_edit)
+#         if form.is_valid():
+#             product_name_edit=form.save()
+#             product_name_edit.save()
+#             return redirect('home')
+#     else:
+#         form=ProductProductNameEditForm()
+#
+#     return render(request, 'product_detail_product_name_edit.html',{'form':form})
+
+
+
+
+def product_detail_add_photo(request):
     if request.method == 'POST':
-        form=ProductProductNameEditForm(request.POST,instance=product_name_edit)
+        form=ProductAddPhoto(request.POST,request.FILES)
         if form.is_valid():
-            product_name_edit=form.save()
-            product_name_edit.save()
+            form.save()
             return redirect('home')
     else:
-        form=ProductProductNameEditForm()
+        form=ProductAddPhoto()
+    return render(request, 'product_detail_add_photo.html',{'form':form})
 
-    return render(request, 'product_detail_product_name_edit.html',{'form':form})
 
+def product_detail_photo_delete(request,pk):
+    try:
+        person = product.objects.get(pk=pk)
+        person.delete()
+        return HttpResponseRedirect("/")
+    except product.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")

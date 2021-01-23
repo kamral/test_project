@@ -29,3 +29,11 @@ class ProductProductNameEditForm(forms.ModelForm):
     class Meta:
         model=product
         fields=('product_name',)
+
+
+
+class ProductAddPhoto(forms.ModelForm):
+
+    class Meta:
+        model=product
+        fields=('product_photo',)

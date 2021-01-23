@@ -18,8 +18,13 @@
             <h1>{{products.first.product_name}}
                 <a href="{%url 'product_name_edit' products.first.pk%}">
                 Edit </a>  </h1>
-
-            <img src="assets/images/product.jpg" alt="Какой-то продукт" class="product-image">
+            {%for item in products%}
+            <img src="{{item.product_photo.url}}"
+                 alt="Какой-то продукт" class="product-image">
+            <p><a href="{% url 'product_detail_delete' products.first.pk%}">Delete_photo </a> </p>
+            {%endfor%}
+              <p>  <a href="{%url 'product_detail_add_photo'%}">
+                Add_photo </a>  </p>
             <div class="product-info">
                 <div class="product-info-item">
                     <h2>Заголовк списка №1</h2>
