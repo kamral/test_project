@@ -23,3 +23,9 @@ class ProductForm(forms.ModelForm):
         model=product
         fields='__all__'
 
+
+class ProductProductNameEditForm(forms.ModelForm):
+
+    class Meta:
+        model=product
+        fields=('product_name',)

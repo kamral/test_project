@@ -5,16 +5,14 @@
     <div class="content">
 
         <h3 contenteditable="true">{{title}} </h3>
-        <input type="button" id="myButton" onclick="buttonClick();" value="Сохранить">
         <br><br>
          <p> <a href="{% url 'post_edit' title.pk%}">
                 Edit </a>  </p>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
+        <div class="swiper-container" >
+            <div class="swiper-wrapper" >
                 {%for item in animation%}
-                <div class="swiper-slide">
-                    <img src="{{item.photo.url}}"
-                         alt="Первая картинка">
+                <div class="swiper-slide" >
+                    <img src="{{item.photo.url}}">
                    </div>
                 {%endfor%}
             </div>
@@ -28,7 +26,7 @@
                         <a href="{% url 'animation_delete' object_list.pk%}"> Delete </a> </p>
             </div>
          <div class="intro-text">
-                <p >{{object_list.text|linebreaksbr}}</p>
+                <p >{{object_list.text|linebreaks}}</p>
             </div>
 
         <div class="products-list">

@@ -49,7 +49,8 @@ class product(models.Model):
     title_number=models.CharField(max_length=255, verbose_name='Номер продукта')
     product_name=models.CharField(max_length=255, verbose_name='Наименование продукта')
     product_photo=models.ImageField(upload_to='photo/',verbose_name='Фото продукта')
-    spisok=models.ManyToManyField(spisok,  verbose_name='Перечень списка')
+    spisok_title=models.ManyToManyField(spisok,  verbose_name='Перечень списка')
+
     created_date = models.DateTimeField(blank=True,default=timezone.now)
 
     def __str__(self):

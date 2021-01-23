@@ -3,10 +3,18 @@ from django.utils import timezone
 
 from .models import Post,Animation,product,MapCoordinates
 # Create your views here.
-from .forms import PostForm,AnimationForm,ProductForm
+from .forms import \
+    PostForm,\
+    AnimationForm,\
+    ProductForm,\
+    ProductProductNameEditForm
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
-from django.views.generic import ListView,DetailView,UpdateView,DeleteView, CreateView
+from django.views.generic import ListView,\
+    DetailView,\
+    UpdateView,\
+    DeleteView,\
+    CreateView
 from django.urls import reverse_lazy
 
 class Index(ListView):
@@ -79,7 +87,7 @@ class PostTitleEdit(UpdateView):
 
 
 
-class PhotoAdd(CreateView):
+class AnimationAdd(CreateView):
     model=Animation
     template_name = 'add_photo.html'
     fields = ['photo']
@@ -96,7 +104,7 @@ class PhotoAdd(CreateView):
 #     return render(request,'add_photo.html', {'form':photo})
 
 
-class PhotoDelete(DeleteView):
+class AnimationDelete(DeleteView):
     model = Animation
     template_name = 'delete_photo.html'
     success_url = reverse_lazy('home')
@@ -117,15 +125,22 @@ class PhotoDelete(DeleteView):
 
 
 
-class ProductDetail(DetailView):
+class ProductDetail(ListView):
     model = product
     template_name = 'product_detail.html'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        contex = super().get_context_data(**kwargs)
-        contex['products'] = product.objects.all()
 
-        return contex
+    def get_queryset(self):
+        return product.objects.filter(pk=self.kwargs['pk'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['products']=product.objects.filter(pk=self.kwargs['pk'])
+
+        return context
+
+
+
 
 # def product_detail(request,pk):
 #     products=get_object_or_404(product,pk=pk)
@@ -164,4 +179,27 @@ class ProductDelete(DeleteView):
 #     context={'product_delete':products}
 #     return  render(request,'product_delete.html', context)
 
+
+
+class ProductNameEdit(UpdateView):
+    model=product
+    template_name = 'product_detail_product_name_edit.html'
+    success_url = '/'
+    fields = ['product_name',]
+
+
+
+
+def product_name_edit(request,pk):
+    product_name_edit=get_object_or_404(product, pk=pk)
+    if request.method == 'POST':
+        form=ProductProductNameEditForm(request.POST,instance=product_name_edit)
+        if form.is_valid():
+            product_name_edit=form.save()
+            product_name_edit.save()
+            return redirect('home')
+    else:
+        form=ProductProductNameEditForm()
+
+    return render(request, 'product_detail_product_name_edit.html',{'form':form})
 
