@@ -1,0 +1,35 @@
+{%load static%}
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;900&display=swap" rel="stylesheet">
+  <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+      integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1> Добавления фото</h1>
+
+ <div class="content-section pt-2 mt-3 shadow-lg"  >
+          <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">
+                        Post
+                    </legend>
+                    {{ form.as_p }}
+              </fieldset>
+              <div class="form-group">
+
+                  <button class="btn btn-outline-primary" type="submit"><i class="fas fa-upload"></i> Upload</button>
+              </div>
+          </form>
+
+      </div>
+
+<!-- JavaScript Bundle with Popper.js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+</body>
+</html>

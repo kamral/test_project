@@ -3,7 +3,7 @@ from django.utils import timezone
 
 from .models import Post,Animation,product,MapCoordinates
 # Create your views here.
-from .forms import PostForm,PostPhotoForm
+from .forms import PostForm,AnimationForm,ProductForm
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from django.views.generic import ListView,DetailView,UpdateView,DeleteView, CreateView
@@ -87,7 +87,7 @@ class PhotoAdd(CreateView):
 
 # def add_photo(request):
 #     if request.method == 'POST':
-#         photo=PostPhotoForm(request.POST,request.FILES)
+#         photo=AnimationForm(request.POST,request.FILES)
 #         if photo.is_valid():
 #             photo.save()
 #             return redirect('/')
@@ -100,6 +100,7 @@ class PhotoDelete(DeleteView):
     model = Animation
     template_name = 'delete_photo.html'
     success_url = reverse_lazy('home')
+    context_object_name = 'product_delete'
 
 
 
@@ -126,6 +127,41 @@ class ProductDetail(DetailView):
 
         return contex
 
-def product_detail(request,pk):
-    products=get_object_or_404(product,pk=pk)
-    return render(request,'product_detail.html', {'products':products})
+# def product_detail(request,pk):
+#     products=get_object_or_404(product,pk=pk)
+#     return render(request,'product_detail.html', {'products':products})
+
+
+class ProductAdd(CreateView):
+    mdoel=product
+    template_name = 'product_add.html'
+
+
+
+# def product_add(request):
+#     if request.method=='POST':
+#         form=ProductForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
+#
+#     else:
+#         form=ProductForm()
+#
+#     return render(request, 'product_add.html', {'form':form})
+
+
+class ProductDelete(DeleteView):
+    model = product
+    template_name = 'product_delete.html'
+    success_url = reverse_lazy('home')
+
+
+#
+# def product_delete(request,pk):
+#     products=get_object_or_404(product,pk=pk)
+#     products.delete()
+#     context={'product_delete':products}
+#     return  render(request,'product_delete.html', context)
+
+

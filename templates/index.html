@@ -35,8 +35,13 @@
             <h2>{{object_list.name_productions}}</h2>
             <ul>
                 {%for item in product%}
-                <li><a href="{% url 'product_detail' item.pk%}">{{item}}</a></li>
+                <li>
+                    <a href="{% url 'product_detail' item.pk%}">{{item}}</a>|
+                    <a href="{% url 'product_delete' item.pk%}"> Delete </a>
+                </li>
                 {%endfor%}
+                <p><a href="{% url 'product_add' %}">Add </a> </p>
+
             </ul>
         </div>
         <div id="map" data-latitude="{{map.first}}" data-longitude="{{map.last}}"></div>
