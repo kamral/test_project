@@ -31,11 +31,21 @@ class Animation(models.Model):
     def get_absolute_url(self):
         return reverse('delete_photo', kwargs={'pk':self.pk})
 
+class punkt_of_spisok(models.Model):
+    punkt=models.CharField(max_length=255, verbose_name='Пукт')
+    spisok=models.ForeignKey('spisok',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.punkt
+
+    class Meta:
+        verbose_name = 'Пункт'
+        verbose_name_plural = 'Пункт списка'
+
 
 class spisok(models.Model):
     title=models.CharField(max_length=255, verbose_name='Заголовок списка')
-    text=models.TextField(verbose_name='Текст спика')
-
+    product=models.ForeignKey('product', verbose_name='Продукт', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -49,7 +59,6 @@ class product(models.Model):
     title_number=models.CharField(max_length=255, verbose_name='Номер продукта')
     product_name=models.CharField(max_length=255, verbose_name='Наименование продукта')
     product_photo=models.ImageField(upload_to='photo/',verbose_name='Фото продукта')
-    spisok_title=models.ManyToManyField(spisok,  verbose_name='Перечень списка')
 
     created_date = models.DateTimeField(blank=True,default=timezone.now)
 
