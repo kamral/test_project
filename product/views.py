@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .models import Post,Animation,product,MapCoordinates
+from .models import Post,Animation,product,MapCoordinates,spisok,punkt_of_spisok
 # Create your views here.
 from .forms import \
     PostForm,\
@@ -125,33 +125,52 @@ class AnimationDelete(DeleteView):
 
 
 
-class ProductDetail(ListView):
-    model = product
-    template_name = 'product_detail.html'
+# class ProductDetail(ListView):
+#     model = product
+#     template_name = 'product_detail.html'
+#
+#
+#     def get_queryset(self):
+#         return product.objects.filter(pk=self.kwargs['pk'])
+#
+#     def title_spisok(self):
+#         return spisok.objects.filter(product=self.kwargs['pk'])
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context=super().get_context_data(**kwargs)
+#         context['products']=product.objects.filter(pk=self.kwargs['pk'])
+#         context['title_product']=spisok.objects.filter(product=self.kwargs['pk'])
+#         spisoks = spisok.objects.filter(pk=self.kwargs['pk'])
+#         context['punkt_of_spisoks1'] = punkt_of_spisok.objects.filter(spisok=spisoks)
+#
+#
+#         return context
 
 
-    def get_queryset(self):
-        return product.objects.filter(pk=self.kwargs['pk'])
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context=super().get_context_data(**kwargs)
-        context['products']=product.objects.filter(pk=self.kwargs['pk'])
 
 
+def product_detail(request,pk):
+    products=product.objects.filter(pk=pk)
+    title_spisok=spisok.objects.filter(product=pk)
+    # spisok1=title_spisok.filter(spisok=pk)
 
-        return context
+
+    punkt=punkt_of_spisok.objects.filter(spisok__product=pk)
 
 
+    return render(request,'product_detail.html', {'products':products,
+                                                  'title_product':title_spisok,
+                                                  'punkts1':punkt,
+                                                  # 'spisok1':spisok1
+                                                  })
 
-
-# def product_detail(request,pk):
-#     products=get_object_or_404(product,pk=pk)
-#     return render(request,'product_detail.html', {'products':products})
 
 
 class ProductAdd(CreateView):
-    mdoel=product
+    model =product
+    fields = '__all__'
     template_name = 'product_add.html'
+    success_url = '/'
 
 
 
@@ -226,3 +245,5 @@ def product_detail_photo_delete(request,pk):
         return HttpResponseRedirect("/")
     except product.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
+
+

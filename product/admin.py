@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Post, \
     spisok,\
-    product, Animation,MapCoordinates
+    product, Animation,MapCoordinates,punkt_of_spisok
 # Register your models here.
 
 
@@ -31,7 +31,7 @@ class AnimationAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(punkt_of_spisok)
 admin.site.register(spisok,SpisokAdmin)
 admin.site.register(product,ProductAdmin)
 admin.site.register(Post,PostAdmin)

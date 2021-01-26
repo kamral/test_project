@@ -1,12 +1,14 @@
 from django.urls import path
 
-from .views import product_detail_add_photo,product_detail_photo_delete
+from .views import product_detail_add_photo,\
+    product_detail_photo_delete,product_detail
+    # product_add
 from .views import Index, \
     PostDetail,\
     PostTitleEdit,\
     AnimationAdd,\
-    AnimationDelete, ProductDetail,ProductAdd,ProductDelete,ProductNameEdit
-
+    AnimationDelete, ProductDelete,ProductNameEdit,ProductAdd
+    # ProductDetail,
 urlpatterns = [
     path('',Index.as_view(), name='home'),
     # path('',index),
@@ -19,8 +21,8 @@ urlpatterns = [
     # path('post/<int:pk>/delete/', delete_photo, name='animation_delete')
     path('animation_delete/<int:pk>/delete/', AnimationDelete.as_view(),
          name='animation_delete'),
-    # path('product/<int:pk>/', produtc_detail, name='product_detail')
-    path('product/<int:pk>/', ProductDetail.as_view(), name='product_detail'),
+    path('product/<int:pk>/', product_detail, name='product_detail'),
+    # path('product/<int:pk>/', ProductDetail.as_view(), name='product_detail'),
     # path('product/product_add/', product_add, name='product_add'),
     path('product/product_add/', ProductAdd.as_view(), name='product_add'),
     # path('product/<int:pk>/delete/', product_delete, name='product_delete')
