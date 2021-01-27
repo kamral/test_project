@@ -156,6 +156,10 @@ def product_detail(request,pk):
 
 
     punkt=punkt_of_spisok.objects.filter(spisok__product=pk)
+    # punkt=punkt_of_spisok.objects.filter(punkt=pk)
+
+
+
 
 
     return render(request,'product_detail.html', {'products':products,
