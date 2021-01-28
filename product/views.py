@@ -155,7 +155,7 @@ def product_detail(request,pk):
     # spisok1=title_spisok.filter(spisok=pk)
 
 
-    punkt=punkt_of_spisok.objects.filter(spisok__product=pk)
+    punkt=punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=1)
     # punkt=punkt_of_spisok.objects.filter(punkt=pk)
 
 

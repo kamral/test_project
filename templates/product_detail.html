@@ -29,17 +29,11 @@
                 <div class="product-info-item">
                     <h2>
                         <p>{{title_product.0.title}}</p>
-                        <p>{{punkts1}}</p>
-                        <p>{{punkts2}}</p>
-                        <p>{{punkts3}}</p>
-
-
-
-
+                        {%for i in punkts1%}
+                        <p>{{i}}</p>
+                        {%endfor%}
 
                         <p>{{title_product.1.title}}</p>
-
-
 
                         <p>{{title_product.2.title}}</p>
                     </h2>
