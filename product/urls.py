@@ -7,7 +7,7 @@ from .views import Index, \
     PostDetail,\
     PostTitleEdit,\
     AnimationAdd,\
-    AnimationDelete, ProductDelete,ProductNameEdit,ProductAdd,product_detail_edit_spisok
+    AnimationDelete, ProductDelete,ProductNameEdit,ProductAdd,product_detail_edit_spisok,send_email
     # ProductDetail,
 urlpatterns = [
     path('',Index.as_view(), name='home'),
@@ -32,5 +32,5 @@ urlpatterns = [
     path('product/product_detail_add_photo/',product_detail_add_photo, name='product_detail_add_photo'),
     path('product/<int:pk>/product_detail_delete/', product_detail_photo_delete, name='product_detail_delete'),
     path('product/<int:pk>/product_spisok_edit/', product_detail_edit_spisok, name='product_name_edit'),
-
+    path('send_email/', send_email)
 ]

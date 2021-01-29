@@ -74,3 +74,10 @@ class MapCoordinates(models.Model):
     first_coordinate=models.CharField(max_length=255, verbose_name='Первый координат карты')
     second_coordinate=models.CharField(max_length=255, verbose_name='Первый координат карты')
 
+
+class Email(models.Model):
+    who_send=models.CharField(max_length=100, verbose_name='Кто отправляет')
+    who_take_message=models.CharField(max_length=100,verbose_name='Тот кто получает')
+    subject=models.CharField(max_length=100, verbose_name='Тема письма')
+    message=models.TextField(verbose_name='Само сообщение')
+

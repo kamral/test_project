@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Animation,product,spisok
+from .models import Post,Animation,product,spisok,Email
 
 class PostForm(forms.ModelForm):
 
@@ -44,3 +44,11 @@ class ProductEditSpisok(forms.ModelForm):
     class Meta:
         model=spisok
         fields=('title',)
+
+
+
+class EmailForm(forms.ModelForm):
+
+    class Meta:
+        model=Email
+        fields='__all__'

@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -7,7 +8,7 @@ from .forms import \
     PostForm,\
     AnimationForm,\
     ProductForm,\
-    ProductProductNameEditForm,ProductAddPhoto,ProductEditSpisok
+    ProductProductNameEditForm,ProductAddPhoto,ProductEditSpisok,EmailForm
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from django.views.generic import ListView,\
@@ -209,6 +210,9 @@ def product_detail_edit_spisok(request,pk):
     return render(request,'product_detail_edit_spisok.html', {'form':form})
 
 
+from django.conf import settings
+send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['kamral010101@gmail.com'])
+
 
 
 
@@ -293,3 +297,14 @@ def product_detail_photo_delete(request,pk):
         return HttpResponseNotFound("<h2>Person not found</h2>")
 
 
+
+def send_email(request):
+    if request.method=='POST':
+        form=EmailForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form=EmailForm()
+
+    return render(request,'send_email.html',{'form':form})
