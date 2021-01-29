@@ -7,7 +7,7 @@ from .forms import \
     PostForm,\
     AnimationForm,\
     ProductForm,\
-    ProductProductNameEditForm,ProductAddPhoto
+    ProductProductNameEditForm,ProductAddPhoto,ProductEditSpisok
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from django.views.generic import ListView,\
@@ -155,7 +155,14 @@ def product_detail(request,pk):
     # spisok1=title_spisok.filter(spisok=pk)
 
 
-    punkt=punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=1)
+    punkt1=punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=1)
+    punkt2=punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=2)
+    punkt3=punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=3)
+    punkt4 = punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=4)
+    punkt5 = punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=5)
+    punkt6 = punkt_of_spisok.objects.filter(spisok__product=pk).filter(spisok=6)
+    spisoks=spisok.objects.all()
+
     # punkt=punkt_of_spisok.objects.filter(punkt=pk)
 
 
@@ -164,9 +171,44 @@ def product_detail(request,pk):
 
     return render(request,'product_detail.html', {'products':products,
                                                   'title_product':title_spisok,
-                                                  'punkts1':punkt,
+                                                  'punkts1':punkt1,
+                                                  'punkts2': punkt2,
+                                                  'punkts3': punkt3,
+                                                  'punkts4': punkt4,
+                                                  'punkts5': punkt5,
+                                                  'punkts6': punkt6,
+                                                  'spisoks':spisoks
+
                                                   # 'spisok1':spisok1
                                                   })
+
+# def product_name_edit(request,pk):
+#     product_name_edit=get_object_or_404(product, pk=pk)
+#     if request.method == 'POST':
+#         form=ProductProductNameEditForm(request.POST,instance=product_name_edit)
+#         if form.is_valid():
+#             product_name_edit=form.save()
+#             product_name_edit.save()
+#             return redirect('home')
+#     else:
+#         form=ProductProductNameEditForm()
+#
+#     return render(request, 'product_detail_product_name_edit.html',{'form':form})
+
+
+
+def product_detail_edit_spisok(request,pk):
+    product_detail_edit_spisok=get_object_or_404(spisok,pk=pk)
+    if request.method=='POST':
+        form=ProductEditSpisok(request.POST,instance=product_detail_edit_spisok)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form=ProductEditSpisok()
+    return render(request,'product_detail_edit_spisok.html', {'form':form})
+
+
 
 
 

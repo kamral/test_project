@@ -28,20 +28,40 @@
             <div class="product-info">
                 <div class="product-info-item">
                     <h2>
-                        <p>{{title_product.0.title}}</p>
+                        <p>{{title_product.0.title}} <a href="{% url 'product_name_edit' title_product.0.pk%}">
+                Edit_spisok </a> </p>
                         {%for i in punkts1%}
-                        <p>{{i}}</p>
+                        <p>{{i}}<a href="#">
+                Edit </a> </p>
+                        {%endfor%}
+                         {%for i in punkts4%}
+                        <p>{{i}}<a href="#">
+                Edit </a> </p>
                         {%endfor%}
 
-                        <p>{{title_product.1.title}}</p>
+                        <p>{{title_product.1.title}} <a href="{% url 'product_name_edit' title_product.1.pk%}">
+                Edit_spisok </a> </p>
+                        {%for i in punkts2%}
+                        <p>{{i}}<a href="#">
+                Edit </a> </p>
+                        {%endfor%}
+                        {%for i in punkts5%}
+                        <p>{{i}}<a href="#">
+                Edit </a> </p>
+                        {%endfor%}
 
-                        <p>{{title_product.2.title}}</p>
+                        <p>{{title_product.2.title}} <a href="{% url 'product_name_edit' title_product.2.pk%}">
+                Edit_spisok </a></p>
+                        {%for i in punkts3%}
+                        <p>{{i}}<a href="#">
+                Edit </a> </p>
+                        {%endfor%}
+                        {%for i in punkts6%}
+                        <p>{{i}}<a href="#">
+                Edit </a> </p>
+                        {%endfor%}
                     </h2>
-                    <ul>
-                        <li>Супер длинный первый пункт списка, такой, чтобы переносился</li>
-                        <li>Второй пункт списка</li>
-                        <li>Третий пункт списка</li>
-                    </ul>
+
                 </div>
 
 

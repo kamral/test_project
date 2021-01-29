@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Animation,product
+from .models import Post,Animation,product,spisok
 
 class PostForm(forms.ModelForm):
 
@@ -37,3 +37,10 @@ class ProductAddPhoto(forms.ModelForm):
     class Meta:
         model=product
         fields=('product_photo',)
+
+
+class ProductEditSpisok(forms.ModelForm):
+
+    class Meta:
+        model=spisok
+        fields=('title',)
